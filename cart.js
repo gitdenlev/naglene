@@ -63,7 +63,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     <img src="${item.image}" alt="${item.name}">
                     <div class="cart-item-details">
                         <h3>${item.name}</h3>
-                        <p>Ціна: $${item.price.toFixed(2)}</p>
+                        <p>Price: $${item.price.toFixed(2)}</p>
                     </div>
                     <div class="cart-item-quantity">
                         <button class="quantity-change-btn" data-id="${
@@ -79,7 +79,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     ).toFixed(2)}</div>
                     <button class="remove-item-btn" data-id="${
                       item.id
-                    }" title="Видалити товар">×</button>
+                    }" title="Delete">×</button>
                 `;
         cartItemsContainer.appendChild(itemElement);
 
