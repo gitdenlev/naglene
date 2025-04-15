@@ -159,7 +159,7 @@ document.addEventListener("DOMContentLoaded", () => {
       addItemToCart(itemToAdd);
 
       // Надаємо користувачеві візуальний відгук (опціонально)
-      buttonElement.textContent = "Додано!";
+      buttonElement.textContent = "Add";
       buttonElement.disabled = true; // Тимчасово блокуємо кнопку
       setTimeout(() => {
         buttonElement.textContent = "Add to cart";
