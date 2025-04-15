@@ -1,0 +1,522 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Inter", sans-serif;
+}
+
+header {
+  background-color: white;
+  padding: 15px 0;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+}
+
+nav ul li {
+  display: inline;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: rgba(102, 119, 153, 1);
+  font-weight: bold;
+  font-size: 19px;
+}
+
+.hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background: url("./photo_2025-03-11_19-12-44.jpg") no-repeat center
+    center/cover;
+  position: relative;
+}
+
+.hero-text {
+  max-width: 50%;
+  color: white;
+}
+
+.hero-text h1 {
+  font-size: 48px;
+  margin: 60px 0;
+}
+
+.hero-text p {
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+
+.cta {
+  position: relative;
+  padding: 12px 18px;
+  transition: all 0.2s ease;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.cta:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  border-radius: 50px;
+  background: #b1dae7;
+  width: 45px;
+  height: 45px;
+  transition: all 0.3s ease;
+}
+
+.cta span {
+  position: relative;
+  font-family: "Ubuntu", sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: #234567;
+}
+
+.cta svg {
+  position: relative;
+  top: 0;
+  margin-left: 10px;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke: #234567;
+  stroke-width: 2;
+  transform: translateX(-5px);
+  transition: all 0.3s ease;
+}
+
+.cta:hover:before {
+  width: 100%;
+  background: #b1dae7;
+}
+
+.cta:hover svg {
+  transform: translateX(0);
+}
+
+.cta:active {
+  transform: scale(0.95);
+}
+
+.btn {
+  width: 150px;
+  height: 50px;
+  border-radius: 5px;
+  border: none;
+  transition: all 0.5s ease-in-out;
+  font-size: 20px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  background: #040f16;
+  color: #ffffff;
+}
+
+.btn:hover {
+  box-shadow: 0 0 2px 2px #2e2e2e3a;
+}
+
+.btn .icon {
+  position: absolute;
+  height: 40px;
+  width: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.5s;
+}
+
+.btn .text {
+  transform: translateX(55px);
+}
+
+.btn:hover .icon {
+  width: 175px;
+}
+
+.btn:hover .text {
+  transition: all 0.5s;
+  opacity: 0;
+}
+
+.btn:focus {
+  outline: none;
+}
+
+.btn:active .icon {
+  transform: scale(0.85);
+}
+
+/* Розділ "Featured Products" */
+/* Серце*/
+.heart-container {
+  --heart-color: rgb(255, 91, 137);
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  right: 35px;
+  transition: 0.3s;
+}
+
+.heart-container .checkbox {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  z-index: 20;
+  cursor: pointer;
+}
+
+.heart-container .svg-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.heart-container .svg-outline,
+.heart-container .svg-filled {
+  fill: var(--heart-color);
+  position: absolute;
+}
+
+.heart-container .svg-filled {
+  animation: keyframes-svg-filled 1s;
+  display: none;
+}
+
+.heart-container .svg-celebrate {
+  position: absolute;
+  animation: keyframes-svg-celebrate 0.5s;
+  animation-fill-mode: forwards;
+  display: none;
+  stroke: var(--heart-color);
+  fill: var(--heart-color);
+  stroke-width: 2px;
+}
+
+.heart-container .checkbox:checked ~ .svg-container .svg-filled {
+  display: block;
+}
+
+.heart-container .checkbox:checked ~ .svg-container .svg-celebrate {
+  display: block;
+}
+
+@keyframes keyframes-svg-filled {
+  0% {
+    transform: scale(0);
+  }
+
+  25% {
+    transform: scale(1.2);
+  }
+
+  50% {
+    transform: scale(1);
+    filter: brightness(1.5);
+  }
+}
+
+@keyframes keyframes-svg-celebrate {
+  0% {
+    transform: scale(0);
+  }
+
+  50% {
+    opacity: 1;
+    filter: brightness(1.5);
+  }
+
+  100% {
+    transform: scale(1.4);
+    opacity: 0;
+    display: none;
+  }
+}
+
+.featured-products {
+  text-align: center;
+  padding: 50px 0;
+  background-color: #fff;
+}
+
+.featured-products h2 {
+  font-size: 28px;
+  margin-bottom: 20px;
+  color: #333;
+}
+/* Контейнер для товарів */
+.products-wrapper {
+  display: grid; /* Використовуємо CSS Grid */
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(200px, 1fr)
+  ); /* Автоматично розміщує товари в колонки */
+  gap: 20px; /* Відстань між товарами */
+  padding: 0 20px; /* Додамо трохи відступів з боків */
+  max-width: 1000px; /* Обмежуємо максимальну ширину контейнера */
+  margin: 0 auto; /* Центруємо контейнер на сторінці */
+}
+
+/* Картка товара */
+.product-card {
+  background: #f9f9f9;
+  padding: 15px;
+  text-align: center;
+  position: relative;
+  border-radius: 10px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s;
+}
+
+.product-card:hover {
+  transform: scale(1.05);
+}
+
+/* фото товара */
+.product-card img {
+  width: 120px;
+  height: 200px; /* Фиксированная высота */
+  object-fit: contain; /* Сохраняет пропорции, без обрезки */
+  margin-bottom: 10px;
+  border-radius: 10px;
+}
+  
+
+.product-card p {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-size: 16px;
+  color: #555;
+}
+
+.product-card p:last-child {
+  font-weight: bold;
+  color: #333;
+}
+
+.Adventures {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.Adventures h3 {
+  text-align: center;
+  font-size: 40px;
+  font-weight: 700;
+  color: #000;
+  margin-bottom: 10px;
+}
+
+.Adventures p {
+  font-size: 20px;
+  color: #555;
+  opacity: 0.7;
+  max-width: 500px;
+}
+
+
+
+/* Ховаємо кнопки навігації, оскільки Grid сам по собі добре вирівнює елементи */
+.prev-btn,
+.next-btn {
+  display: none;
+}
+
+/* Wave */
+.background {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  opacity: 1;
+  z-index: -1;
+}
+
+/* Circle */
+.circle {
+  position: absolute;
+  top: -5%;
+  right: -100px;
+  height: 100%;
+  opacity: 0.7;
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  z-index: 1;
+}
+
+/* Bottle */
+.bottle {
+  position: absolute;
+  top: 2%;
+  bottom: 30%;
+  margin-top:40px;
+  transform: rotate(15deg);
+  right: 150px;
+  width: 175px;
+  height: auto;
+  z-index: 1;
+}
+
+.hero-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background: url("./images_naglene/read.me/Background.jpg") no-repeat center center/cover;
+}
+
+
+
+.hero-bottle {
+  position: absolute;
+  top: 0;
+  right: 0px;
+  width: 470px;
+  height: 470px;
+  justify-content: right;
+  margin-top:-40px;
+  margin-right: -150px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.514);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.grid-section {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 40px;
+  background: #f9f9f9;
+}
+
+.category-card {
+  text-align: center;
+  width: 300px;
+}
+
+.category-card img {
+  width: 100%;
+  border-radius: 12px;
+}
+
+.category-card h4 {
+  font-weight: bold;
+  margin-top: 12px;
+}
+
+footer {
+  background-color: #ffffff;
+  border-top: 1px solid #ccc;
+  padding: 40px;
+  font-size: 14px;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 30px;
+  padding-bottom: 30px;
+}
+
+.footer-column h4 {
+  margin-bottom: 10px;
+}
+
+.footer-column a {
+  display: block;
+  margin-bottom: 8px;
+  text-decoration: none;
+  color: #333;
+}
+
+.footer-bottom {
+  text-align: center;
+  border-top: 1px solid #ddd;
+  padding-top: 20px;
+  color: #666;
+}
+
+
+.social-icons {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.social-icons img {
+  width: 24px;
+  margin: 10px;
+}
+
+
+.add-to-cart {
+  background-color: #234567;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.add-to-cart:hover {
+  background-color: #1a3450;
+}
+
+.fly-image {
+  position: absolute;
+  z-index: 1000;
+  pointer-events: none;
+  transition: transform 0.7s ease-in-out, opacity 0.7s ease-in-out;
+}
+
+.product-image-wrapper {
+  height: 220px;
+  display: block;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.product-card img {
+  max-height: 100%;
+  width: auto;
+  object-fit: contain;
+}
+
+
+
+

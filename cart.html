@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ваш кошик - Naglene</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* Додаткові стилі спеціально для сторінки кошика */
+      .cart-page-container {
+        max-width: 900px;
+        margin: 40px auto;
+        padding: 20px;
+        font-family: "Inter", sans-serif;
+      }
+
+      .cart-item {
+        display: flex;
+        align-items: center;
+        border-bottom: 1px solid #eee;
+        padding: 15px 0;
+        gap: 15px; /* Проміжок між елементами */
+      }
+
+      .cart-item img {
+        max-width: 80px;
+        height: auto;
+        border-radius: 4px;
+      }
+
+      .cart-item-details {
+        flex-grow: 1; /* Займає доступний простір */
+      }
+
+      .cart-item-details h3 {
+        margin: 0 0 5px 0;
+        font-size: 1.1em;
+        font-weight: 600;
+      }
+
+      .cart-item-details p {
+        margin: 4px 0;
+        color: #555;
+        font-size: 0.95em;
+      }
+
+      .cart-item-quantity {
+        display: flex;
+        align-items: center;
+        min-width: 100px; /* Щоб кнопки не стрибали */
+      }
+
+      .cart-item-quantity button {
+        background-color: #eee;
+        border: none;
+        padding: 5px 10px;
+        cursor: pointer;
+        font-size: 1em;
+        border-radius: 4px;
+      }
+      .cart-item-quantity span {
+        padding: 0 10px;
+        font-weight: bold;
+        min-width: 20px;
+        text-align: center;
+      }
+
+      .cart-item-price {
+        font-weight: bold;
+        min-width: 80px;
+        text-align: right;
+      }
+
+      .remove-item-btn {
+        background: none;
+        border: none;
+        color: red;
+        cursor: pointer;
+        font-size: 1.2em;
+        padding: 5px;
+      }
+
+      .cart-summary {
+        margin-top: 30px;
+        padding-top: 20px;
+        border-top: 2px solid #ccc;
+        text-align: right;
+      }
+      .cart-summary h2 {
+        text-align: left;
+        margin-bottom: 15px;
+      }
+
+      .cart-summary p {
+        font-size: 1.2em;
+        margin: 10px 0;
+        font-weight: 600;
+      }
+
+      .empty-cart-message {
+        text-align: center;
+        font-size: 1.2em;
+        color: #777;
+        padding: 50px 0;
+      }
+
+      .cart-actions {
+        margin-top: 20px;
+        display: flex;
+        justify-content: space-between; /* Розміщення кнопок */
+      }
+
+      .clear-cart-btn,
+      .checkout-btn {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 1em;
+        font-weight: 600;
+      }
+
+      .clear-cart-btn {
+        background-color: #f44336; /* Червоний */
+        color: white;
+      }
+      .clear-cart-btn:hover {
+        background-color: #d32f2f;
+      }
+
+      .checkout-btn {
+        background-color: #4caf50; /* Зелений */
+        color: white;
+      }
+      .checkout-btn:hover {
+        background-color: #45a049;
+      }
+      .checkout-btn:disabled {
+        background-color: #ccc;
+        cursor: not-allowed;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <ul>
+          <li><a href="./index.html">SHOP ALL</a></li>
+          <li class="logo"><a href="./index.html">NAGLENE</a></li>
+          <li>
+            <a href="./cart.html" id="cart-link-header">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="cart-icon"
+              >
+                <circle cx="9" cy="21" r="1"></circle>
+                <circle cx="20" cy="21" r="1"></circle>
+                <path
+                  d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"
+                ></path>
+              </svg>
+              <span id="cart-count-header">0</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="cart-page-container">
+      <h1>Ваш кошик</h1>
+
+      <div id="cart-items-container"></div>
+
+      <div id="cart-summary" style="display: none">
+        <h2>Підсумок</h2>
+        <p>Загальна кількість: <span id="total-quantity">0</span></p>
+        <p>Загальна вартість: $<span id="total-price">0.00</span></p>
+        <div class="cart-actions">
+          <button id="clear-cart-btn" class="clear-cart-btn">
+            Очистити кошик
+          </button>
+          <button id="checkout-btn" class="checkout-btn">
+            Перейти до оформлення
+          </button>
+        </div>
+      </div>
+
+      <div
+        id="empty-cart-message"
+        class="empty-cart-message"
+        style="display: none"
+      >
+        Ваш кошик порожній. <a href="./index.html">Повернутись до покупок</a>
+      </div>
+    </main>
+
+
+
+    <script src="cart.js"></script>
+  </body>
+</html>
